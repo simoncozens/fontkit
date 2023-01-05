@@ -4,6 +4,12 @@ import { GPOSLookup } from './GPOS';
 
 let JstfGSUBModList = new r.Array(r.uint16, r.uint16);
 
+let JstfVariation = new r.Struct({
+  coverage: new r.Pointer(r.uint16, Coverage),
+  axisID: r.uint16,
+  flags: r.uint16
+});
+
 let JstfPriority = new r.Struct({
   shrinkageEnableGSUB:    new r.Pointer(r.uint16, JstfGSUBModList),
   shrinkageDisableGSUB:   new r.Pointer(r.uint16, JstfGSUBModList),
@@ -14,7 +20,8 @@ let JstfPriority = new r.Struct({
   extensionDisableGSUB:   new r.Pointer(r.uint16, JstfGSUBModList),
   extensionEnableGPOS:    new r.Pointer(r.uint16, JstfGSUBModList),
   extensionDisableGPOS:   new r.Pointer(r.uint16, JstfGSUBModList),
-  extensionJstfMax:       new r.Pointer(r.uint16, new LookupList(GPOSLookup))
+  extensionJstfMax:       new r.Pointer(r.uint16, new LookupList(GPOSLookup)),
+  jstfVariation:          new r.Pointer(r.uint16, JstfVariation),
 });
 
 let JstfLangSys = new r.Array(new r.Pointer(r.uint16, JstfPriority), r.uint16);
